@@ -5,7 +5,7 @@ class Validations:
 
     @staticmethod
     def valid_status_code(response, status_code):
-        assert status_code == response.status_code, "Status code not as expected"
+        assert status_code == response.status_code, "Status code not as expected."
         print(f"Status code ({status_code}) is valid.")
 
     @staticmethod
@@ -20,9 +20,4 @@ class Validations:
             f"Response time({round(response.elapsed.total_seconds() * 1000)}) is more than {expected_time}ms."
         print(f"Response time({round(response.elapsed.total_seconds() * 1000)}) is less than {expected_time}ms.")
 
-    @staticmethod
-    def check_json_value(response, field_name, expected_value):
-        check = response.json()
-        check_info = check.get(field_name)
-        assert check_info == expected_value
-        print("Value is wright")
+
