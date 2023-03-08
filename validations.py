@@ -15,9 +15,14 @@ class Validations:
         print("All keys are available.")
 
     @staticmethod
+    def check_json_values(response, expected_keys):
+        response_values = (json.loads(response.text)).values()
+        assert expected_keys in list(response_values) or expected_keys == list(response_values), \
+            "The expected values do not match the actual one."
+        print("All values are available.")
+
+    @staticmethod
     def response_time(response, expected_time):
         assert round(response.elapsed.total_seconds() * 1000) < expected_time, \
             f"Response time({round(response.elapsed.total_seconds() * 1000)}) is more than {expected_time}ms."
         print(f"Response time({round(response.elapsed.total_seconds() * 1000)}) is less than {expected_time}ms.")
-
-
