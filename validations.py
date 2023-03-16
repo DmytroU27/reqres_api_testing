@@ -9,20 +9,20 @@ class Validations:
         print(f"Status code ({status_code}) is valid.")
 
     @staticmethod
-    def check_json_keys(response, expected_keys):
+    def valid_json_keys(response, expected_keys):
         response_keys = (json.loads(response.text)).keys()
         assert list(response_keys) == expected_keys, "The expected set of keys does not match the actual one."
         print("All keys are available.")
 
     @staticmethod
-    def check_json_values(response, expected_keys):
+    def valid_json_values(response, expected_keys):
         response_values = (json.loads(response.text)).values()
         assert expected_keys in list(response_values) or expected_keys == list(response_values), \
             "The expected values do not match the actual one."
         print("All values are available.")
 
     @staticmethod
-    def response_time(response, expected_time):
+    def valid_response_time(response, expected_time):
         assert round(response.elapsed.total_seconds() * 1000) < expected_time, \
             f"Response time({round(response.elapsed.total_seconds() * 1000)}) is more than {expected_time}ms."
         print(f"Response time({round(response.elapsed.total_seconds() * 1000)}) is less than {expected_time}ms.")
